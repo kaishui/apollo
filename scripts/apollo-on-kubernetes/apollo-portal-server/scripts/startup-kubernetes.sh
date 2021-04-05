@@ -1,7 +1,7 @@
 #!/bin/bash
 SERVICE_NAME=apollo-portal
 ## Adjust log dir if necessary
-LOG_DIR=/opt/logs/apollo-portal-server
+LOG_DIR=/software/workspace/logs/apollo-portal-server
 ## Adjust server port if necessary
 SERVER_PORT=8070
 

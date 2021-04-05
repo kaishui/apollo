@@ -7,7 +7,7 @@ spring:
 
 logging:
   file:
-    name: /opt/logs/100003171/apollo-assembly.log
+    name: /software/workspace/logs/100003171/apollo-assembly.log
 
 management:
   health:

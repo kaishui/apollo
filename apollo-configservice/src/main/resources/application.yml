@@ -14,7 +14,7 @@ server:
 
 logging:
   file:
-    name: /opt/logs/100003171/apollo-configservice.log
+    name: /software/workspace/logs/100003171/apollo-configservice.log
 
 eureka:
   instance:

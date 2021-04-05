@@ -115,7 +115,7 @@ ldap:
 ```bash
 SERVICE_NAME=apollo-portal
 ## Adjust log dir if necessary
-LOG_DIR=/opt/logs/100003173
+LOG_DIR=/software/workspace/logs/100003173
 ## Adjust server port if necessary
 SERVER_PORT=8070
 
@@ -155,7 +155,7 @@ ldap:
 ```bash
 SERVICE_NAME=apollo-portal
 ## Adjust log dir if necessary
-LOG_DIR=/opt/logs/100003173
+LOG_DIR=/software/workspace/logs/100003173
 ## Adjust server port if necessary
 SERVER_PORT=8070
 
@@ -221,7 +221,7 @@ ldap:
 ```bash
 SERVICE_NAME=apollo-portal
 ## Adjust log dir if necessary
-LOG_DIR=/opt/logs/100003173
+LOG_DIR=/software/workspace/logs/100003173
 ## Adjust server port if necessary
 SERVER_PORT=8070
 
@@ -328,7 +328,7 @@ spring:
 ```bash
 SERVICE_NAME=apollo-portal
 ## Adjust log dir if necessary
-LOG_DIR=/opt/logs/100003173
+LOG_DIR=/software/workspace/logs/100003173
 ## Adjust server port if necessary
 SERVER_PORT=8070
 

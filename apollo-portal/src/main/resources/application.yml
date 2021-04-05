@@ -18,7 +18,7 @@ server:
 
 logging:
   file:
-    name: /opt/logs/100003173/apollo-portal.log
+    name: /software/workspace/logs/100003173/apollo-portal.log
 
 management:
   health:

@@ -1,7 +1,7 @@
 # Dockerfile for apollo-configservice
 # 1. ./scripts/build.sh
 # 2. Build with: mvn docker:build -pl apollo-configservice
-# 3. Run with: docker run -p 8080:8080 -e SPRING_DATASOURCE_URL="jdbc:mysql://fill-in-the-correct-server:3306/ApolloConfigDB?characterEncoding=utf8" -e SPRING_DATASOURCE_USERNAME=FillInCorrectUser -e SPRING_DATASOURCE_PASSWORD=FillInCorrectPassword -d -v /tmp/logs:/opt/logs --name apollo-configservice apolloconfig/apollo-configservice
+# 3. Run with: docker run -p 8080:8080 -e SPRING_DATASOURCE_URL="jdbc:mysql://fill-in-the-correct-server:3306/ApolloConfigDB?characterEncoding=utf8" -e SPRING_DATASOURCE_USERNAME=FillInCorrectUser -e SPRING_DATASOURCE_PASSWORD=FillInCorrectPassword -d -v /tmp/logs:/software/workspace/logs --name apollo-configservice apolloconfig/apollo-configservice
 
 FROM openjdk:8-jre-alpine
 LABEL maintainer="finchcn@gmail.com;ameizi<sxyx2008@163.com>"
