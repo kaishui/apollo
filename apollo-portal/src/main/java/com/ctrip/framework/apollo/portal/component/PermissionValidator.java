@@ -87,7 +87,7 @@ public class PermissionValidator {
 
   public boolean hasCreateAppNamespacePermission(String appId, AppNamespace appNamespace) {
 
-    boolean isPublicAppNamespace = appNamespace.isPublic();
+    boolean isPublicAppNamespace = appNamespace.isShared();
 
     if (portalConfig.canAppAdminCreatePrivateNamespace() || isPublicAppNamespace) {
       return hasCreateNamespacePermission(appId);
@@ -118,7 +118,7 @@ public class PermissionValidator {
 
     // 2. public namespace is open to every one
     AppNamespace appNamespace = appNamespaceService.findByAppIdAndName(appId, namespaceName);
-    if (appNamespace != null && appNamespace.isPublic()) {
+    if (appNamespace != null && appNamespace.isShared()) {
       return false;
     }
 

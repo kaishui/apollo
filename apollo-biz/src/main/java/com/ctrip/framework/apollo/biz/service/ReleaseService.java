@@ -81,7 +81,7 @@ public class ReleaseService {
 
 
   public Release findActiveOne(long releaseId) {
-    return releaseRepository.findByIdAndIsAbandonedFalse(releaseId);
+    return releaseRepository.findByIdAndAbandonedFalse(releaseId);
   }
 
   public List<Release> findByReleaseIds(Set<Long> releaseIds) {
@@ -103,7 +103,7 @@ public class ReleaseService {
   }
 
   public Release findLatestActiveRelease(String appId, String clusterName, String namespaceName) {
-    return releaseRepository.findFirstByAppIdAndClusterNameAndNamespaceNameAndIsAbandonedFalseOrderByIdDesc(appId,
+    return releaseRepository.findFirstByAppIdAndClusterNameAndNamespaceNameAndAbandonedFalseOrderByIdDesc(appId,
                                                                                                             clusterName,
                                                                                                             namespaceName);
   }
@@ -122,7 +122,7 @@ public class ReleaseService {
   public List<Release> findActiveReleases(String appId, String clusterName, String namespaceName, Pageable page) {
     List<Release>
         releases =
-        releaseRepository.findByAppIdAndClusterNameAndNamespaceNameAndIsAbandonedFalseOrderByIdDesc(appId, clusterName,
+        releaseRepository.findByAppIdAndClusterNameAndNamespaceNameAndAbandonedFalseOrderByIdDesc(appId, clusterName,
                                                                                                     namespaceName,
                                                                                                     page);
     if (releases == null) {
@@ -135,7 +135,7 @@ public class ReleaseService {
                                                   long fromReleaseId, long toReleaseId) {
     List<Release>
         releases =
-        releaseRepository.findByAppIdAndClusterNameAndNamespaceNameAndIsAbandonedFalseAndIdBetweenOrderByIdDesc(appId,
+        releaseRepository.findByAppIdAndClusterNameAndNamespaceNameAndAbandonedFalseAndIdBetweenOrderByIdDesc(appId,
                                                                                                                 clusterName,
                                                                                                                 namespaceName,
                                                                                                                 fromReleaseId,

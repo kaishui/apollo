@@ -2,6 +2,7 @@ package com.ctrip.framework.apollo.biz.entity;
 
 import com.ctrip.framework.apollo.common.entity.BaseEntity;
 
+import javax.persistence.SequenceGenerator;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
@@ -13,20 +14,21 @@ import javax.persistence.Table;
  * @author Jason Song(song_s@ctrip.com)
  */
 @Entity
-@Table(name = "ServerConfig")
-@SQLDelete(sql = "Update ServerConfig set isDeleted = 1 where id = ?")
-@Where(clause = "isDeleted = 0")
+@Table(name = "server_config")
+@SQLDelete(sql = "UPDATE server_config SET deleted = TRUE WHERE id = ?")
+@Where(clause = "NOT deleted")
+@SequenceGenerator(name = "sequence", sequenceName = "server_config_id_seq", allocationSize = 1)
 public class ServerConfig extends BaseEntity {
-  @Column(name = "Key", nullable = false)
+  @Column(name = "key", nullable = false)
   private String key;
 
-  @Column(name = "Cluster", nullable = false)
+  @Column(name = "cluster", nullable = false)
   private String cluster;
 
-  @Column(name = "Value", nullable = false)
+  @Column(name = "value", nullable = false)
   private String value;
 
-  @Column(name = "Comment", nullable = false)
+  @Column(name = "comment", nullable = false)
   private String comment;
 
   public String getKey() {

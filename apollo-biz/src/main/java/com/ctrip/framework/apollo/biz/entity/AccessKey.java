@@ -1,6 +1,7 @@
 package com.ctrip.framework.apollo.biz.entity;
 
 import com.ctrip.framework.apollo.common.entity.BaseEntity;
+import javax.persistence.SequenceGenerator;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
@@ -9,18 +10,19 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "AccessKey")
-@SQLDelete(sql = "Update AccessKey set isDeleted = 1 where id = ?")
-@Where(clause = "isDeleted = 0")
+@Table(name = "access_key")
+@SQLDelete(sql = "Update access_key set deleted = TRUE where id = ?")
+@Where(clause = "NOT deleted")
+@SequenceGenerator(name = "sequence", sequenceName = "access_key_id_seq", allocationSize = 1)
 public class AccessKey extends BaseEntity {
 
-  @Column(name = "appId", nullable = false)
+  @Column(name = "app_id", nullable = false)
   private String appId;
 
-  @Column(name = "Secret", nullable = false)
+  @Column(name = "secret", nullable = false)
   private String secret;
 
-  @Column(name = "isEnabled", columnDefinition = "Bit default '0'")
+  @Column(name = "enabled", columnDefinition = "false")
   private boolean enabled;
 
   public String getAppId() {

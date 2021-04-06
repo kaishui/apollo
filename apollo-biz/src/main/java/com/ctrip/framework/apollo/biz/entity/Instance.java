@@ -10,35 +10,37 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
  * @author Jason Song(song_s@ctrip.com)
  */
 @Entity
-@Table(name = "Instance")
+@Table(name = "instance")
+@SequenceGenerator(name = "sequence", sequenceName = "instance_id_seq", allocationSize = 1)
 public class Instance {
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "Id")
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence")
+  @Column(name = "id")
   private long id;
 
-  @Column(name = "AppId", nullable = false)
+  @Column(name = "app_id", nullable = false)
   private String appId;
 
-  @Column(name = "ClusterName", nullable = false)
+  @Column(name = "cluster_name", nullable = false)
   private String clusterName;
 
-  @Column(name = "DataCenter", nullable = false)
+  @Column(name = "data_center", nullable = false)
   private String dataCenter;
 
-  @Column(name = "Ip", nullable = false)
+  @Column(name = "ip", nullable = false)
   private String ip;
 
-  @Column(name = "DataChange_CreatedTime", nullable = false)
+  @Column(name = "created_time", nullable = false)
   private Date dataChangeCreatedTime;
 
-  @Column(name = "DataChange_LastTime")
+  @Column(name = "last_modified_time")
   private Date dataChangeLastModifiedTime;
 
   @PrePersist

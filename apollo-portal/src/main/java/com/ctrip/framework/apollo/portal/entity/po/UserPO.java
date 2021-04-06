@@ -7,27 +7,29 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
  * @author lepdou 2017-04-08
  */
 @Entity
-@Table(name = "Users")
+@Table(name = "users")
+@SequenceGenerator(name = "sequence", sequenceName = "users_id_seq", allocationSize = 1)
 public class UserPO {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "Id")
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence")
+  @Column(name = "id")
   private long id;
-  @Column(name = "Username", nullable = false)
+  @Column(name = "username", nullable = false)
   private String username;
-  @Column(name = "Password", nullable = false)
+  @Column(name = "password", nullable = false)
   private String password;
-  @Column(name = "Email", nullable = false)
+  @Column(name = "email", nullable = false)
   private String email;
-  @Column(name = "Enabled", nullable = false)
-  private int enabled;
+  @Column(name = "enabled", nullable = false)
+  private boolean enabled = true;
 
   public long getId() {
     return id;
@@ -61,11 +63,12 @@ public class UserPO {
     this.password = password;
   }
 
-  public int getEnabled() {
+
+  public boolean isEnabled() {
     return enabled;
   }
 
-  public void setEnabled(int enabled) {
+  public void setEnabled(boolean enabled) {
     this.enabled = enabled;
   }
 

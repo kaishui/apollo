@@ -82,7 +82,7 @@ public class ReleaseServiceTest extends AbstractUnitTest {
   public void testHasNoRelease() {
 
     when(releaseRepository.findById(releaseId)).thenReturn(Optional.of(firstRelease));
-    when(releaseRepository.findByAppIdAndClusterNameAndNamespaceNameAndIsAbandonedFalseOrderByIdDesc(appId,
+    when(releaseRepository.findByAppIdAndClusterNameAndNamespaceNameAndAbandonedFalseOrderByIdDesc(appId,
                                                                                                      clusterName,
                                                                                                      namespaceName,
                                                                                                      pageRequest))
@@ -95,7 +95,7 @@ public class ReleaseServiceTest extends AbstractUnitTest {
   public void testRollback() {
 
     when(releaseRepository.findById(releaseId)).thenReturn(Optional.of(firstRelease));
-    when(releaseRepository.findByAppIdAndClusterNameAndNamespaceNameAndIsAbandonedFalseOrderByIdDesc(appId,
+    when(releaseRepository.findByAppIdAndClusterNameAndNamespaceNameAndAbandonedFalseOrderByIdDesc(appId,
                                                                                                      clusterName,
                                                                                                      namespaceName,
                                                                                                      pageRequest))
@@ -125,7 +125,7 @@ public class ReleaseServiceTest extends AbstractUnitTest {
     long releaseId3 = 3;
     when(releaseRepository.findById(releaseId1)).thenReturn(Optional.of(releaseList.get(2)));
     when(releaseRepository.findById(releaseId3)).thenReturn(Optional.of(releaseList.get(0)));
-    when(releaseRepository.findByAppIdAndClusterNameAndNamespaceNameAndIsAbandonedFalseAndIdBetweenOrderByIdDesc(appId,
+    when(releaseRepository.findByAppIdAndClusterNameAndNamespaceNameAndAbandonedFalseAndIdBetweenOrderByIdDesc(appId,
                                                                                                                  clusterName,
                                                                                                                  namespaceName,
                                                                                                                  releaseId1,
@@ -156,7 +156,7 @@ public class ReleaseServiceTest extends AbstractUnitTest {
                         someNamespaceName,
                         someValidConfiguration);
 
-    when(releaseRepository.findFirstByAppIdAndClusterNameAndNamespaceNameAndIsAbandonedFalseOrderByIdDesc(someAppId,
+    when(releaseRepository.findFirstByAppIdAndClusterNameAndNamespaceNameAndAbandonedFalseOrderByIdDesc(someAppId,
                                                                                                           someClusterName,
                                                                                                           someNamespaceName))
         .thenReturn(someRelease);
@@ -164,7 +164,7 @@ public class ReleaseServiceTest extends AbstractUnitTest {
     Release result = releaseService.findLatestActiveRelease(someAppId, someClusterName, someNamespaceName);
 
     verify(releaseRepository, times(1))
-        .findFirstByAppIdAndClusterNameAndNamespaceNameAndIsAbandonedFalseOrderByIdDesc(someAppId, someClusterName,
+        .findFirstByAppIdAndClusterNameAndNamespaceNameAndAbandonedFalseOrderByIdDesc(someAppId, someClusterName,
                                                                                         someNamespaceName);
     assertEquals(someAppId, result.getAppId());
     assertEquals(someClusterName, result.getClusterName());
@@ -179,7 +179,7 @@ public class ReleaseServiceTest extends AbstractUnitTest {
     String someClusterName = "someClusterName";
     String someNamespaceName = "someNamespaceName";
 
-    when(releaseRepository.findFirstByAppIdAndClusterNameAndNamespaceNameAndIsAbandonedFalseOrderByIdDesc(someAppId,
+    when(releaseRepository.findFirstByAppIdAndClusterNameAndNamespaceNameAndAbandonedFalseOrderByIdDesc(someAppId,
                                                                                                           someClusterName,
                                                                                                           someNamespaceName))
         .thenReturn(null);
@@ -187,7 +187,7 @@ public class ReleaseServiceTest extends AbstractUnitTest {
     Release result = releaseService.findLatestActiveRelease(someAppId, someClusterName, someNamespaceName);
 
     assertNull(result);
-    verify(releaseRepository, times(1)).findFirstByAppIdAndClusterNameAndNamespaceNameAndIsAbandonedFalseOrderByIdDesc(
+    verify(releaseRepository, times(1)).findFirstByAppIdAndClusterNameAndNamespaceNameAndAbandonedFalseOrderByIdDesc(
         someAppId, someClusterName, someNamespaceName);
   }
 

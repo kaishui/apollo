@@ -2,6 +2,7 @@ package com.ctrip.framework.apollo.biz.entity;
 
 import com.ctrip.framework.apollo.common.entity.BaseEntity;
 
+import javax.persistence.SequenceGenerator;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
@@ -10,18 +11,19 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Namespace")
-@SQLDelete(sql = "Update Namespace set isDeleted = 1 where id = ?")
-@Where(clause = "isDeleted = 0")
+@Table(name = "namespace")
+@SQLDelete(sql = "UPDATE namespace SET deleted = TRUE WHERE id = ?")
+@Where(clause = "NOT deleted")
+@SequenceGenerator(name = "sequence", sequenceName = "namespace_id_seq", allocationSize = 1)
 public class Namespace extends BaseEntity {
 
-  @Column(name = "appId", nullable = false)
+  @Column(name = "app_id", nullable = false)
   private String appId;
 
-  @Column(name = "ClusterName", nullable = false)
+  @Column(name = "cluster_name", nullable = false)
   private String clusterName;
 
-  @Column(name = "NamespaceName", nullable = false)
+  @Column(name = "namespace_name", nullable = false)
   private String namespaceName;
 
   public Namespace(){

@@ -10,32 +10,34 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
  * @author Jason Song(song_s@ctrip.com)
  */
 @Entity
-@Table(name = "ConsumerAudit")
+@Table(name = "consumer_audit")
+@SequenceGenerator(name = "sequence", sequenceName = "consumer_audit_id_seq", allocationSize = 1)
 public class ConsumerAudit {
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "Id")
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence")
+  @Column(name = "id")
   private long id;
 
-  @Column(name = "ConsumerId", nullable = false)
+  @Column(name = "consumer_id", nullable = false)
   private long consumerId;
 
-  @Column(name = "Uri", nullable = false)
+  @Column(name = "uri", nullable = false)
   private String uri;
 
-  @Column(name = "Method", nullable = false)
+  @Column(name = "method", nullable = false)
   private String method;
 
-  @Column(name = "DataChange_CreatedTime")
+  @Column(name = "created_time")
   private Date dataChangeCreatedTime;
 
-  @Column(name = "DataChange_LastTime")
+  @Column(name = "last_modified_time")
   private Date dataChangeLastModifiedTime;
 
   @PrePersist

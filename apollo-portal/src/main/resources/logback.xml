@@ -5,7 +5,7 @@
 		value="${LOG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}/}apollo-portal.log}" />
 	<include resource="org/springframework/boot/logging/logback/file-appender.xml" />
 	<include resource="org/springframework/boot/logging/logback/console-appender.xml" />
-	<root level="INFO">
+	<root level="debug">
 		<if condition='isDefined("LOG_APPENDERS")'>
 			<then>
 				<if condition='property("LOG_APPENDERS").contains("CONSOLE")'>

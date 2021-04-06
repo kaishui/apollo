@@ -2,6 +2,7 @@ package com.ctrip.framework.apollo.openapi.entity;
 
 import com.ctrip.framework.apollo.common.entity.BaseEntity;
 
+import javax.persistence.SequenceGenerator;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
@@ -13,14 +14,15 @@ import javax.persistence.Table;
  * @author Jason Song(song_s@ctrip.com)
  */
 @Entity
-@Table(name = "ConsumerRole")
-@SQLDelete(sql = "Update ConsumerRole set isDeleted = 1 where id = ?")
-@Where(clause = "isDeleted = 0")
+@Table(name = "consumer_role")
+@SQLDelete(sql = "UPDATE consumer_role SET deleted = TRUE WHERE id = ?")
+@Where(clause = "NOT deleted")
+@SequenceGenerator(name = "sequence", sequenceName = "consumer_role_id_seq", allocationSize = 1)
 public class ConsumerRole extends BaseEntity {
-  @Column(name = "ConsumerId", nullable = false)
+  @Column(name = "consumer_id", nullable = false)
   private long consumerId;
 
-  @Column(name = "RoleId", nullable = false)
+  @Column(name = "role_id", nullable = false)
   private long roleId;
 
   public long getConsumerId() {

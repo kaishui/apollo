@@ -1,6 +1,7 @@
 package com.ctrip.framework.apollo.common.entity;
 
 import com.ctrip.framework.apollo.common.utils.InputValidator;
+import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import org.hibernate.annotations.SQLDelete;
@@ -11,35 +12,28 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "App")
-@SQLDelete(sql = "Update App set isDeleted = 1 where id = ?")
-@Where(clause = "isDeleted = 0")
+@Table(name = "app")
+@SQLDelete(sql = "UPDATE app SET deleted = TRUE WHERE id = ?")
+@Where(clause = "NOT deleted")
+@SequenceGenerator(name = "sequence", sequenceName = "app_id_seq", allocationSize = 1)
 public class App extends BaseEntity {
 
-  @NotBlank(message = "Name cannot be blank")
-  @Column(name = "Name", nullable = false)
+  @Column(name = "app_name", nullable = false)
   private String name;
 
-  @NotBlank(message = "AppId cannot be blank")
-  @Pattern(
-      regexp = InputValidator.CLUSTER_NAMESPACE_VALIDATOR,
-      message = InputValidator.INVALID_CLUSTER_NAMESPACE_MESSAGE
-  )
-  @Column(name = "AppId", nullable = false)
+  @Column(name = "app_id", nullable = false)
   private String appId;
 
-  @Column(name = "OrgId", nullable = false)
+  @Column(name = "org_id", nullable = false)
   private String orgId;
 
-  @Column(name = "OrgName", nullable = false)
+  @Column(name = "org_name", nullable = false)
   private String orgName;
 
-  @NotBlank(message = "OwnerName cannot be blank")
-  @Column(name = "OwnerName", nullable = false)
+  @Column(name = "owner_name", nullable = false)
   private String ownerName;
 
-  @NotBlank(message = "OwnerEmail cannot be blank")
-  @Column(name = "OwnerEmail", nullable = false)
+  @Column(name = "owner_email", nullable = false)
   private String ownerEmail;
 
   public String getAppId() {

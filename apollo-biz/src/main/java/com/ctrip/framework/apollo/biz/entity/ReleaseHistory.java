@@ -2,6 +2,7 @@ package com.ctrip.framework.apollo.biz.entity;
 
 import com.ctrip.framework.apollo.common.entity.BaseEntity;
 
+import javax.persistence.SequenceGenerator;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
@@ -13,32 +14,33 @@ import javax.persistence.Table;
  * @author Jason Song(song_s@ctrip.com)
  */
 @Entity
-@Table(name = "ReleaseHistory")
-@SQLDelete(sql = "Update ReleaseHistory set isDeleted = 1 where id = ?")
-@Where(clause = "isDeleted = 0")
+@Table(name = "release_history")
+@SQLDelete(sql = "UPDATE release_history SET deleted = TRUE WHERE id = ?")
+@Where(clause = "NOT deleted")
+@SequenceGenerator(name = "sequence", sequenceName = "release_history_id_seq", allocationSize = 1)
 public class ReleaseHistory extends BaseEntity {
-  @Column(name = "AppId", nullable = false)
+  @Column(name = "app_id", nullable = false)
   private String appId;
 
-  @Column(name = "ClusterName", nullable = false)
+  @Column(name = "cluster_name", nullable = false)
   private String clusterName;
 
-  @Column(name = "NamespaceName", nullable = false)
+  @Column(name = "namespace_name", nullable = false)
   private String namespaceName;
 
-  @Column(name = "BranchName", nullable = false)
+  @Column(name = "branch_name", nullable = false)
   private String branchName;
 
-  @Column(name = "ReleaseId")
+  @Column(name = "release_id")
   private long releaseId;
 
-  @Column(name = "PreviousReleaseId")
+  @Column(name = "previous_release_id")
   private long previousReleaseId;
 
-  @Column(name = "Operation")
+  @Column(name = "operation")
   private int operation;
 
-  @Column(name = "OperationContext", nullable = false)
+  @Column(name = "operation_context", nullable = false)
   private String operationContext;
 
   public String getAppId() {

@@ -8,6 +8,8 @@ import org.springframework.boot.autoconfigure.ldap.LdapAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @EnableAspectJAutoProxy
@@ -19,6 +21,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class PortalApplication {
 
   public static void main(String[] args) throws Exception {
+    PasswordEncoder encoder = new BCryptPasswordEncoder();
+
+    String password = encoder.encode("admin");
+    System.out.println(password);
     SpringApplication.run(PortalApplication.class, args);
   }
 }

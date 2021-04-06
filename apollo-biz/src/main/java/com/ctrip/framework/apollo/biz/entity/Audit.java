@@ -2,6 +2,7 @@ package com.ctrip.framework.apollo.biz.entity;
 
 import com.ctrip.framework.apollo.common.entity.BaseEntity;
 
+import javax.persistence.SequenceGenerator;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
@@ -10,25 +11,26 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Audit")
-@SQLDelete(sql = "Update Audit set isDeleted = 1 where id = ?")
-@Where(clause = "isDeleted = 0")
+@Table(name = "audit")
+@SQLDelete(sql = "Update Audit set deleted = TRUE where id = ?")
+@Where(clause = "NOT deleted")
+@SequenceGenerator(name = "sequence", sequenceName = "audit_id_seq", allocationSize = 1)
 public class Audit extends BaseEntity {
 
   public enum OP {
     INSERT, UPDATE, DELETE
   }
 
-  @Column(name = "EntityName", nullable = false)
+  @Column(name = "entity_name", nullable = false)
   private String entityName;
 
-  @Column(name = "EntityId")
+  @Column(name = "entity_id")
   private Long entityId;
 
-  @Column(name = "OpName", nullable = false)
+  @Column(name = "op_name", nullable = false)
   private String opName;
 
-  @Column(name = "Comment")
+  @Column(name = "comment")
   private String comment;
 
   public String getComment() {

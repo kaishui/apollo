@@ -23,7 +23,7 @@ public class MockBeanFactory {
 
     instance.setAppId(appId);
     instance.setName(name);
-    instance.setPublic(isPublic);
+    instance.setShared(isPublic);
 
     return instance;
   }

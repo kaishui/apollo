@@ -199,7 +199,7 @@ public class NamespaceController {
 
     AppNamespace createdAppNamespace = appNamespaceService.createAppNamespaceInLocal(appNamespace, appendNamespacePrefix);
 
-    if (portalConfig.canAppAdminCreatePrivateNamespace() || createdAppNamespace.isPublic()) {
+    if (portalConfig.canAppAdminCreatePrivateNamespace() || createdAppNamespace.isShared()) {
       namespaceService.assignNamespaceRoleToOperator(appId, appNamespace.getName(),
           userInfoHolder.getUser().getUserId());
     }
@@ -272,7 +272,7 @@ public class NamespaceController {
 
     for (AppNamespace appNamespace : portalDbAppNamespaces) {
       portalDbAllAppNamespaceNames.add(appNamespace.getName());
-      if (!appNamespace.isPublic()) {
+      if (!appNamespace.isShared()) {
         portalDbPrivateAppNamespaceNames.add(appNamespace.getName());
       }
     }

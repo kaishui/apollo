@@ -38,7 +38,7 @@ public class UserInfoController {
   }
 
 
-  @PreAuthorize(value = "@permissionValidator.isSuperAdmin()")
+//  @PreAuthorize(value = "@permissionValidator.isSuperAdmin()")
   @PostMapping("/users")
   public void createOrUpdateUser(@RequestBody UserPO user) {
     if (StringUtils.isContainEmpty(user.getUsername(), user.getPassword())) {

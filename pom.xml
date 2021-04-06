@@ -284,6 +284,11 @@
 				<version>8.0.16</version>
 			</dependency>
 			<dependency>
+				<groupId>org.postgresql</groupId>
+				<artifactId>postgresql</artifactId>
+				<version>42.2.19</version>
+			</dependency>
+			<dependency>
 				<groupId>com.google.inject</groupId>
 				<artifactId>guice</artifactId>
 				<version>4.1.0</version>

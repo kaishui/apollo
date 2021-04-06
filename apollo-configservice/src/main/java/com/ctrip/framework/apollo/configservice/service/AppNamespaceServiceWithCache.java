@@ -170,7 +170,7 @@ public class AppNamespaceServiceWithCache implements InitializingBean {
     for (AppNamespace appNamespace : appNamespaces) {
       appNamespaceCache.put(assembleAppNamespaceKey(appNamespace), appNamespace);
       appNamespaceIdCache.put(appNamespace.getId(), appNamespace);
-      if (appNamespace.isPublic()) {
+      if (appNamespace.isShared()) {
         publicAppNamespaceCache.put(appNamespace.getName(), appNamespace);
       }
     }
@@ -216,14 +216,14 @@ public class AppNamespaceServiceWithCache implements InitializingBean {
           appNamespaceCache.remove(oldKey);
         }
 
-        if (appNamespace.isPublic()) {
+        if (appNamespace.isShared()) {
           publicAppNamespaceCache.put(appNamespace.getName(), appNamespace);
 
           //in case namespaceName changes
-          if (!appNamespace.getName().equals(thatInCache.getName()) && thatInCache.isPublic()) {
+          if (!appNamespace.getName().equals(thatInCache.getName()) && thatInCache.isShared()) {
             publicAppNamespaceCache.remove(thatInCache.getName());
           }
-        } else if (thatInCache.isPublic()) {
+        } else if (thatInCache.isShared()) {
           //just in case isPublic changes
           publicAppNamespaceCache.remove(thatInCache.getName());
         }
@@ -244,7 +244,7 @@ public class AppNamespaceServiceWithCache implements InitializingBean {
         continue;
       }
       appNamespaceCache.remove(assembleAppNamespaceKey(deleted));
-      if (deleted.isPublic()) {
+      if (deleted.isShared()) {
         AppNamespace publicAppNamespace = publicAppNamespaceCache.get(deleted.getName());
         // in case there is some dirty data, e.g. public namespace deleted in some app and now created in another app
         if (publicAppNamespace == deleted) {

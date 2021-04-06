@@ -202,7 +202,7 @@ public class AppNamespaceServiceWithCacheTest {
     String somePrivateNamespaceNew = "somePrivateNamespaceNew";
     AppNamespace somePrivateAppNamespaceNew = assembleAppNamespace(somePrivateAppNamespace.getId
         (), somePrivateAppNamespace.getAppId(), somePrivateNamespaceNew, somePrivateAppNamespace
-        .isPublic());
+        .isShared());
     somePrivateAppNamespaceNew.setDataChangeLastModifiedTime(newDateWithDelta
         (somePrivateAppNamespace.getDataChangeLastModifiedTime(), 1));
 
@@ -217,7 +217,7 @@ public class AppNamespaceServiceWithCacheTest {
     // Update isPublic
     AppNamespace somePublicAppNamespaceNew = assembleAppNamespace(somePublicAppNamespace
             .getId(), somePublicAppNamespace.getAppId(), somePublicAppNamespace.getName(),
-        !somePublicAppNamespace.isPublic());
+        !somePublicAppNamespace.isShared());
     somePublicAppNamespaceNew.setDataChangeLastModifiedTime(newDateWithDelta
         (somePublicAppNamespace.getDataChangeLastModifiedTime(), 1));
 
@@ -284,7 +284,7 @@ public class AppNamespaceServiceWithCacheTest {
     appNamespace.setId(id);
     appNamespace.setAppId(appId);
     appNamespace.setName(name);
-    appNamespace.setPublic(isPublic);
+    appNamespace.setShared(isPublic);
     appNamespace.setDataChangeLastModifiedTime(new Date());
     return appNamespace;
   }

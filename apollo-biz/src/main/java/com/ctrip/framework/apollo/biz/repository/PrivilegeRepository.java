@@ -10,7 +10,7 @@ public interface PrivilegeRepository extends PagingAndSortingRepository<Privileg
 
   List<Privilege> findByNamespaceId(long namespaceId);
 
-  List<Privilege> findByNamespaceIdAndPrivilType(long namespaceId, String privilType);
+  List<Privilege> findByNamespaceIdAndPrivilegeType(long namespaceId, String privilegeType);
 
-  Privilege findByNamespaceIdAndNameAndPrivilType(long namespaceId, String name, String privilType);
+  Privilege findByNamespaceIdAndNameAndPrivilegeType(long namespaceId, String name, String privilegeType);
 }

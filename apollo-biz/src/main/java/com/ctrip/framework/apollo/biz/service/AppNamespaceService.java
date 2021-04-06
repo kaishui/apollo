@@ -52,7 +52,7 @@ public class AppNamespaceService {
 
   public AppNamespace findPublicNamespaceByName(String namespaceName) {
     Preconditions.checkArgument(namespaceName != null, "Namespace must not be null");
-    return appNamespaceRepository.findByNameAndIsPublicTrue(namespaceName);
+    return appNamespaceRepository.findByNameAndSharedTrue(namespaceName);
   }
 
   public List<AppNamespace> findByAppId(String appId) {
@@ -64,11 +64,11 @@ public class AppNamespaceService {
       return Collections.emptyList();
     }
 
-    return appNamespaceRepository.findByNameInAndIsPublicTrue(namespaceNames);
+    return appNamespaceRepository.findByNameInAndSharedTrue(namespaceNames);
   }
 
   public List<AppNamespace> findPrivateAppNamespace(String appId) {
-    return appNamespaceRepository.findByAppIdAndIsPublic(appId, false);
+    return appNamespaceRepository.findByAppIdAndShared(appId, false);
   }
 
   public AppNamespace findOne(String appId, String namespaceName) {

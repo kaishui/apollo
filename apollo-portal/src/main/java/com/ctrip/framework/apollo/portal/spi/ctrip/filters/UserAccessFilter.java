@@ -14,7 +14,7 @@ import java.io.IOException;
 
 public class UserAccessFilter implements Filter {
 
-  private static final String STATIC_RESOURCE_REGEX = ".*\\.(js|html|htm|png|css|woff2)$";
+  private static final String STATIC_RESOURCE_REGEX = ".*\\.(js|html|htm|png|css|woff2|ico)$";
 
   private UserInfoHolder userInfoHolder;
 

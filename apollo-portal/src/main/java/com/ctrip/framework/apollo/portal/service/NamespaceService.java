@@ -107,7 +107,7 @@ public class NamespaceService {
     }
 
     //3. check public namespace has not associated namespace
-    if (appNamespace != null && appNamespace.isPublic() && publicAppNamespaceHasAssociatedNamespace(
+    if (appNamespace != null && appNamespace.isShared() && publicAppNamespaceHasAssociatedNamespace(
         namespaceName, env)) {
       throw new BadRequestException(
           "Can not delete public namespace which has associated namespaces");
@@ -278,7 +278,7 @@ public class NamespaceService {
       isPublic = true; // set to true, because public namespace allowed to delete by user
     } else {
       format = appNamespace.getFormat();
-      isPublic = appNamespace.isPublic();
+      isPublic = appNamespace.isShared();
       namespace.setParentAppId(appNamespace.getAppId());
       namespace.setComment(appNamespace.getComment());
     }

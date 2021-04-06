@@ -2,6 +2,7 @@ package com.ctrip.framework.apollo.biz.entity;
 
 import com.ctrip.framework.apollo.common.entity.BaseEntity;
 
+import javax.persistence.SequenceGenerator;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
@@ -10,30 +11,32 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "GrayReleaseRule")
-@SQLDelete(sql = "Update GrayReleaseRule set isDeleted = 1 where id = ?")
-@Where(clause = "isDeleted = 0")
+@Table(name = "gray_release_rule")
+@SQLDelete(sql = "UPDATE gray_release_rule SET deleted = TRUE WHERE id = ?")
+@Where(clause = "NOT deleted")
+@SequenceGenerator(name = "sequence", sequenceName = "gray_release_rule_id_seq", allocationSize = 1)
 public class GrayReleaseRule extends BaseEntity{
 
-  @Column(name = "appId", nullable = false)
+
+  @Column(name = "app_id", nullable = false)
   private String appId;
 
-  @Column(name = "ClusterName", nullable = false)
+  @Column(name = "cluster_name", nullable = false)
   private String clusterName;
 
-  @Column(name = "NamespaceName", nullable = false)
+  @Column(name = "namespace_name", nullable = false)
   private String namespaceName;
 
-  @Column(name = "BranchName", nullable = false)
+  @Column(name = "branch_name", nullable = false)
   private String branchName;
 
-  @Column(name = "Rules")
+  @Column(name = "rules")
   private String rules;
 
-  @Column(name = "releaseId", nullable = false)
+  @Column(name = "release_id", nullable = false)
   private Long releaseId;
 
-  @Column(name = "BranchStatus", nullable = false)
+  @Column(name = "branch_status", nullable = false)
   private int branchStatus;
 
   public String getAppId() {

@@ -10,23 +10,25 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
  * @author Jason Song(song_s@ctrip.com)
  */
 @Entity
-@Table(name = "ReleaseMessage")
+@Table(name = "release_message")
+@SequenceGenerator(name = "sequence", sequenceName = "release_message_id_seq", allocationSize = 1)
 public class ReleaseMessage {
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "Id")
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence")
+  @Column(name = "id")
   private long id;
 
-  @Column(name = "Message", nullable = false)
+  @Column(name = "message", nullable = false)
   private String message;
 
-  @Column(name = "DataChange_LastTime")
+  @Column(name = "last_modified_time")
   private Date dataChangeLastModifiedTime;
 
   @PrePersist

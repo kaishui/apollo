@@ -23,7 +23,7 @@ public interface ReleaseHistoryRepository extends PagingAndSortingRepository<Rel
   Page<ReleaseHistory> findByReleaseIdAndOperationInOrderByIdDesc(long releaseId, Set<Integer> operations, Pageable pageable);
 
   @Modifying
-  @Query("update ReleaseHistory set isdeleted=1,DataChange_LastModifiedBy = ?4 where appId=?1 and clusterName=?2 and namespaceName = ?3")
+  @Query("UPDATE ReleaseHistory SET idDeleted = TRUE, dataChangeLastModifiedBy = ?4 WHERE appId = ?1 AND clusterName = ?2 AND namespaceName = ?3")
   int batchDelete(String appId, String clusterName, String namespaceName, String operator);
 
 }

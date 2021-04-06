@@ -457,7 +457,7 @@ public class ConfigControllerTest {
     AppNamespace appNamespace = new AppNamespace();
     appNamespace.setAppId(appId);
     appNamespace.setName(namespace);
-    appNamespace.setPublic(isPublic);
+    appNamespace.setShared(isPublic);
     return appNamespace;
   }
 }

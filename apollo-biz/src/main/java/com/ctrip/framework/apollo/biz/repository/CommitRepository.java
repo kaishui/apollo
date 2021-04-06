@@ -19,7 +19,7 @@ public interface CommitRepository extends PagingAndSortingRepository<Commit, Lon
       String appId, String clusterName, String namespaceName, Date dataChangeLastModifiedTime, Pageable pageable);
 
   @Modifying
-  @Query("update Commit set isdeleted=1,DataChange_LastModifiedBy = ?4 where appId=?1 and clusterName=?2 and namespaceName = ?3")
+  @Query("UPDATE Commit SET isDeleted = TRUE, dataChangeLastModifiedBy = ?4 WHERE appId = ?1 AND clusterName = ?2 AND namespaceName = ?3")
   int batchDelete(String appId, String clusterName, String namespaceName, String operator);
 
 }

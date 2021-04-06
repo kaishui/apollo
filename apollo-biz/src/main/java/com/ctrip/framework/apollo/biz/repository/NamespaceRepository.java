@@ -16,7 +16,7 @@ public interface NamespaceRepository extends PagingAndSortingRepository<Namespac
   Namespace findByAppIdAndClusterNameAndNamespaceName(String appId, String clusterName, String namespaceName);
 
   @Modifying
-  @Query("update Namespace set isdeleted=1,DataChange_LastModifiedBy = ?3 where appId=?1 and clusterName=?2")
+  @Query("UPDATE Namespace SET isDeleted = TRUE, dataChangeLastModifiedBy = ?3 WHERE appId = ?1 and clusterName = ?2")
   int batchDelete(String appId, String clusterName, String operator);
 
   List<Namespace> findByAppIdAndNamespaceNameOrderByIdAsc(String appId, String namespaceName);

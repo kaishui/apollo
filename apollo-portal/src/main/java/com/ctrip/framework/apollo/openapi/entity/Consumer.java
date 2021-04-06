@@ -2,6 +2,7 @@ package com.ctrip.framework.apollo.openapi.entity;
 
 import com.ctrip.framework.apollo.common.entity.BaseEntity;
 
+import javax.persistence.SequenceGenerator;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
@@ -10,27 +11,28 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Consumer")
-@SQLDelete(sql = "Update Consumer set isDeleted = 1 where id = ?")
-@Where(clause = "isDeleted = 0")
+@Table(name = "consumer")
+@SQLDelete(sql = "UPDATE consumer SET deleted = TRUE WHERE id = ?")
+@Where(clause = "NOT deleted")
+@SequenceGenerator(name = "sequence", sequenceName = "consumer_id_seq", allocationSize = 1)
 public class Consumer extends BaseEntity {
 
-  @Column(name = "Name", nullable = false)
+  @Column(name = "consumer_name", nullable = false)
   private String name;
 
-  @Column(name = "AppId", nullable = false)
+  @Column(name = "app_id", nullable = false)
   private String appId;
 
-  @Column(name = "OrgId", nullable = false)
+  @Column(name = "org_id", nullable = false)
   private String orgId;
 
-  @Column(name = "OrgName", nullable = false)
+  @Column(name = "org_name", nullable = false)
   private String orgName;
 
-  @Column(name = "OwnerName", nullable = false)
+  @Column(name = "owner_name", nullable = false)
   private String ownerName;
 
-  @Column(name = "OwnerEmail", nullable = false)
+  @Column(name = "owner_email", nullable = false)
   private String ownerEmail;
 
   public String getAppId() {

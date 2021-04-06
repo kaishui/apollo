@@ -2,6 +2,7 @@ package com.ctrip.framework.apollo.biz.entity;
 
 import com.ctrip.framework.apollo.common.entity.BaseEntity;
 
+import javax.persistence.SequenceGenerator;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
@@ -11,25 +12,26 @@ import javax.persistence.Lob;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Commit")
-@SQLDelete(sql = "Update Commit set isDeleted = 1 where id = ?")
-@Where(clause = "isDeleted = 0")
+@Table(name = "commit")
+@SQLDelete(sql = "UPDATE commit SET deleted = TRUE WHERE id = ?")
+@Where(clause = "NOT deleted")
+@SequenceGenerator(name = "sequence", sequenceName = "commit_id_seq", allocationSize = 1)
 public class Commit extends BaseEntity {
 
   @Lob
-  @Column(name = "ChangeSets", nullable = false)
+  @Column(name = "change_sets", nullable = false)
   private String changeSets;
 
-  @Column(name = "AppId", nullable = false)
+  @Column(name = "app_id", nullable = false)
   private String appId;
 
-  @Column(name = "ClusterName", nullable = false)
+  @Column(name = "cluster_name", nullable = false)
   private String clusterName;
 
-  @Column(name = "NamespaceName", nullable = false)
+  @Column(name = "namespace_name", nullable = false)
   private String namespaceName;
 
-  @Column(name = "Comment")
+  @Column(name = "comment")
   private String comment;
 
   public String getChangeSets() {

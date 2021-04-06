@@ -16,21 +16,21 @@ public interface AppNamespaceRepository extends PagingAndSortingRepository<AppNa
 
   List<AppNamespace> findByAppIdAndNameIn(String appId, Set<String> namespaceNames);
 
-  AppNamespace findByNameAndIsPublicTrue(String namespaceName);
+  AppNamespace findByNameAndSharedTrue(String namespaceName);
 
-  List<AppNamespace> findByNameInAndIsPublicTrue(Set<String> namespaceNames);
+  List<AppNamespace> findByNameInAndSharedTrue(Set<String> namespaceNames);
 
-  List<AppNamespace> findByAppIdAndIsPublic(String appId, boolean isPublic);
+  List<AppNamespace> findByAppIdAndShared(String appId, boolean shared);
 
   List<AppNamespace> findByAppId(String appId);
 
   List<AppNamespace> findFirst500ByIdGreaterThanOrderByIdAsc(long id);
 
   @Modifying
-  @Query("UPDATE AppNamespace SET IsDeleted=1,DataChange_LastModifiedBy = ?2 WHERE AppId=?1")
+  @Query("UPDATE AppNamespace SET isDeleted= true ,dataChangeLastModifiedBy = ?2 WHERE appId=?1")
   int batchDeleteByAppId(String appId, String operator);
 
   @Modifying
-  @Query("UPDATE AppNamespace SET IsDeleted=1,DataChange_LastModifiedBy = ?3 WHERE AppId=?1 and Name = ?2")
+  @Query("UPDATE AppNamespace SET isDeleted= true ,dataChangeLastModifiedBy = ?3 WHERE appId=?1 and name = ?2")
   int delete(String appId, String namespaceName, String operator);
 }

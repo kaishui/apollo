@@ -70,7 +70,7 @@ public class AppNamespaceServiceTest extends AbstractIntegrationTest {
   @Sql(scripts = "/sql/cleanup.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
   public void testCreatePublicAppNamespaceExisted() {
     AppNamespace appNamespace = assembleBaseAppNamespace();
-    appNamespace.setPublic(true);
+    appNamespace.setShared(true);
     appNamespace.setName("old");
     appNamespace.setFormat(ConfigFileFormat.Properties.getValue());
 
@@ -82,7 +82,7 @@ public class AppNamespaceServiceTest extends AbstractIntegrationTest {
   @Sql(scripts = "/sql/cleanup.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
   public void testCreatePublicAppNamespaceExistedAsPrivateAppNamespace() {
     AppNamespace appNamespace = assembleBaseAppNamespace();
-    appNamespace.setPublic(true);
+    appNamespace.setShared(true);
     appNamespace.setName("private-01");
     appNamespace.setFormat(ConfigFileFormat.Properties.getValue());
 
@@ -94,7 +94,7 @@ public class AppNamespaceServiceTest extends AbstractIntegrationTest {
   @Sql(scripts = "/sql/cleanup.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
   public void testCreatePublicAppNamespaceNotExistedWithNoAppendnamespacePrefix() {
     AppNamespace appNamespace = assembleBaseAppNamespace();
-    appNamespace.setPublic(true);
+    appNamespace.setShared(true);
     appNamespace.setName("old");
     appNamespace.setFormat(ConfigFileFormat.Properties.getValue());
 
@@ -109,7 +109,7 @@ public class AppNamespaceServiceTest extends AbstractIntegrationTest {
   @Sql(scripts = "/sql/cleanup.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
   public void testCreatePublicAppNamespaceExistedWithNoAppendnamespacePrefix() {
     AppNamespace appNamespace = assembleBaseAppNamespace();
-    appNamespace.setPublic(true);
+    appNamespace.setShared(true);
     appNamespace.setName("datasource");
     appNamespace.setFormat(ConfigFileFormat.Properties.getValue());
 
@@ -121,7 +121,7 @@ public class AppNamespaceServiceTest extends AbstractIntegrationTest {
   @Sql(scripts = "/sql/cleanup.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
   public void testCreatePublicAppNamespaceNotExisted() {
     AppNamespace appNamespace = assembleBaseAppNamespace();
-    appNamespace.setPublic(true);
+    appNamespace.setShared(true);
 
     appNamespaceService.createAppNamespaceInLocal(appNamespace);
 
@@ -136,7 +136,7 @@ public class AppNamespaceServiceTest extends AbstractIntegrationTest {
   @Sql(scripts = "/sql/cleanup.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
   public void testCreatePublicAppNamespaceWithWrongFormatNotExisted() {
     AppNamespace appNamespace = assembleBaseAppNamespace();
-    appNamespace.setPublic(true);
+    appNamespace.setShared(true);
     appNamespace.setFormat(ConfigFileFormat.YAML.getValue());
 
     appNamespaceService.createAppNamespaceInLocal(appNamespace);
@@ -154,7 +154,7 @@ public class AppNamespaceServiceTest extends AbstractIntegrationTest {
   @Sql(scripts = "/sql/cleanup.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
   public void testCreatePrivateAppNamespaceExisted() {
     AppNamespace appNamespace = assembleBaseAppNamespace();
-    appNamespace.setPublic(false);
+    appNamespace.setShared(false);
     appNamespace.setName("datasource");
     appNamespace.setAppId("100003173");
 
@@ -166,7 +166,7 @@ public class AppNamespaceServiceTest extends AbstractIntegrationTest {
   @Sql(scripts = "/sql/cleanup.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
   public void testCreatePrivateAppNamespaceExistedInAnotherAppId() {
     AppNamespace appNamespace = assembleBaseAppNamespace();
-    appNamespace.setPublic(false);
+    appNamespace.setShared(false);
     appNamespace.setName("datasource");
     appNamespace.setAppId("song0711-01");
 
@@ -184,7 +184,7 @@ public class AppNamespaceServiceTest extends AbstractIntegrationTest {
   @Sql(scripts = "/sql/cleanup.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
   public void testCreatePrivateAppNamespaceExistedInAnotherAppIdAsPublic() {
     AppNamespace appNamespace = assembleBaseAppNamespace();
-    appNamespace.setPublic(false);
+    appNamespace.setShared(false);
     appNamespace.setName("SCC.song0711-03");
     appNamespace.setAppId("100003173");
     appNamespace.setFormat(ConfigFileFormat.Properties.getValue());
@@ -197,7 +197,7 @@ public class AppNamespaceServiceTest extends AbstractIntegrationTest {
   @Sql(scripts = "/sql/cleanup.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
   public void testCreatePrivateAppNamespaceNotExisted() {
     AppNamespace appNamespace = assembleBaseAppNamespace();
-    appNamespace.setPublic(false);
+    appNamespace.setShared(false);
 
     appNamespaceService.createAppNamespaceInLocal(appNamespace);
 
