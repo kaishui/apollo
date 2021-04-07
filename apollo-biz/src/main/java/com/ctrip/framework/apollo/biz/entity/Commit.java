@@ -18,7 +18,7 @@ import javax.persistence.Table;
 @SequenceGenerator(name = "sequence", sequenceName = "commit_id_seq", allocationSize = 1)
 public class Commit extends BaseEntity {
 
-  @Lob
+//  @Lob
   @Column(name = "change_sets", nullable = false)
   private String changeSets;
 
