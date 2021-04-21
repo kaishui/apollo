@@ -556,3 +556,13 @@ The project is licensed under the [Apache 2 license](https://github.com/ctripcor
 # Stargazers over time
 
 [![Stargazers over time](https://starcharts.herokuapp.com/ctripcorp/apollo.svg)](https://starcharts.herokuapp.com/ctripcorp/apollo)
+
+# startup script
+```
+-Dapollo_profile=github
+-Dspring.datasource.url=jdbc:postgresql://192.168.31.198:5432/config
+-Dspring.datasource.username=postgres
+-Dspring.datasource.password=changeme
+-Xms1G
+-Xmx1G
+```
